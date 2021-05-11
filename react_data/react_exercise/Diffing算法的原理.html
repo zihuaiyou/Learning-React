@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="test"></div>
+    <script
+      type="text/javascript"
+      src="../JS/react全家桶资料/03_依赖包/旧版本/react.development.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../JS/react全家桶资料/03_依赖包/旧版本/react-dom.development.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../JS/react全家桶资料/03_依赖包/旧版本/babel.min.js"
+    ></script>
+
+    <script type="text/babel">
+      class Demo extends React.Component {
+        state = {
+          persons: [
+            { id: 1, name: "Jack" },
+            { id: 2, name: "Bob" },
+          ],
+        };
+        add = () => {
+          const { persons } = this.state;
+          const someone = { id: persons.length + 1, name: "wang" };
+          this.setState({ persons: [someone, ...persons] });
+        };
+        render() {
+          return (
+            <div>
+              <ul>
+                {this.state.persons.map((p) => {
+                  return (
+                    <li key={p.id}>
+                      {p.name} <input type="text" />
+                    </li>
+                  );
+                })}
+                <button onClick={this.add}>添加</button>
+                <hr />
+                <hr />
+                {this.state.persons.map((p, index) => {
+                  return (
+                    <li key={index}>
+                      {p.name} <input type="text" />
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          );
+        }
+      }
+      ReactDOM.render(<Demo />, document.querySelector("#test"));
+    </script>
+  </body>
+</html>

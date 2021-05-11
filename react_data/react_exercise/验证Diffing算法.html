@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+    <script
+      type="text/javascript"
+      src="../JS/react全家桶资料/03_依赖包/旧版本/react.development.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../JS/react全家桶资料/03_依赖包/旧版本/react-dom.development.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../JS/react全家桶资料/03_依赖包/旧版本/babel.min.js"
+    ></script>
+
+    <script type="text/babel">
+        class Test extends React.Component {
+            state = {
+                date:new Date()
+            }
+            componentDidMount(){
+                const {date} = this.state
+                setInterval(()=> {
+                    this.setState({date:new Date()})
+                },1000)
+            }
+            render() {
+                return (
+                    <div>
+                        <h1>Hello React</h1>
+                        <input type="text" name="" id="" placeholder = "请输入"/>
+                        <h3>现在是{this.state.date.toTimeString()}</h3>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Test/>,document.querySelector("#test"));
+    </script>
+</body>
+</html>

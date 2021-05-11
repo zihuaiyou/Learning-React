@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数式组件</title>
+</head>
+<body>
+    <div id="test"></div>
+    <div id="test2"></div>
+    <script
+      type="text/javascript"
+      src="../JS/react全家桶资料/03_依赖包/旧版本/react.development.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../JS/react全家桶资料/03_依赖包/旧版本/react-dom.development.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../JS/react全家桶资料/03_依赖包/旧版本/babel.min.js"
+    ></script>
+
+    <script type="text/babel">
+        function Demo(){
+            return <h1>这是一个函数式组件</h1>
+        }
+        function Demo2(){
+            return <h2>这也是一个函数式组件</h2>
+        }
+
+        ReactDOM.render(<Demo/>,document.getElementById("test"));
+        ReactDOM.render(<Demo2/>,document.getElementById("test2"));
+    </script>
+</body>
+</html>
