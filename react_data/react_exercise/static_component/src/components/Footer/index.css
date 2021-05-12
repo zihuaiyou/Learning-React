@@ -1,0 +1,39 @@
+/* Footer */
+.Todo-footer {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 6px;
+    margin-top: 5px;
+}
+.Todo-footer label {
+    display: inline-block;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.Todo-footer label input {
+    position: relative;
+    top: -1px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.Todo-footer button {
+    float: right;
+    margin-top: 5px;
+}
+.btn-danger {
+    color: #fff;
+    background-color: #da4f49;
+    border: 1px solid #bd362f;
+}
+.btn {
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 20%), 0 1px 2px rgb(0 0 0 / 5%);
+    border-radius: 4px;
+}
