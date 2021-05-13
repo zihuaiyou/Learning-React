@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../尚硅谷React全家桶教程/react全家桶资料/03_依赖包/新版本/react.development.js"></script>
+    <script type="text/javascript" src="../尚硅谷React全家桶教程/react全家桶资料/03_依赖包/新版本/react-dom.development.js"></script>
+    <script type="text/javascript" src="../尚硅谷React全家桶教程/react全家桶资料/03_依赖包/新版本/babel.min.js"></script>
+
+    <script type="text/babel">
+        class MyComponent extends React.Component {
+
+            //React.createRef()创建容器
+            container1 = React.createRef();
+            container2 = React.createRef();
+            showData = () => {
+                const {current} = this.container1; //容器的键名为current
+                alert(current.value);
+            }
+            showData2 = () => {
+                const {current} = this.container2;
+                alert(current.value);
+            }
+
+            render(){
+                return (
+                    <div>
+                        <input type="text" placeholder = "点击按钮显示提示信息"  ref = {this.container1}/>
+                        <button onClick = {this.showData}>点击我</button>
+                        <input type="text" placeholder = "失去焦点显示提示信息" ref = {this.container2} onBlur = {this.showData2}/>
+                        </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<MyComponent/>,document.getElementById("test"));
+    </script>
+</body>
+</html>

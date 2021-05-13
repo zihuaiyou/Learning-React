@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件的生命周期</title>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../尚硅谷React全家桶教程/react全家桶资料/03_依赖包/新版本/react.development.js"></script>
+    <script type="text/javascript" src="../尚硅谷React全家桶教程/react全家桶资料/03_依赖包/新版本/react-dom.development.js"></script>
+    <script type="text/javascript" src="../尚硅谷React全家桶教程/react全家桶资料/03_依赖包/新版本/babel.min.js"></script>
+
+    <script type="text/babel">
+        class MyComponent extends React.Component {
+            state = {
+                opacity: 1
+            }
+            death = () => {
+                // 卸载组件
+                ReactDOM.unmountComponentAtNode(document.getElementById("test"));
+            }
+            componentWillUnmount() { //组件将要卸载, 由React调用,只调用一次
+                //清除定时器
+                clearInterval(this.timeId);
+            }
+            componentDidMount() { //组件挂载完毕,由React调用,只调用一次
+                let { opacity } = this.state;
+
+                this.timeId = setInterval(() => {
+                    opacity -= 0.1;
+                    if (opacity <= 0) opacity = 1;
+                    this.setState({ opacity });
+                }, 200)
+            }
+
+            
+            render() { //初次更新并渲染组件,,由React调用,调用1+n次,(n指状态更新次数)
+                return (
+                    <div>
+                        <h1 style={{ opacity: this.state.opacity }}>组件的生命周期</h1>
+                        <button onClick={this.death}>卸载</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<MyComponent />, document.getElementById("test"));
+    </script>
+</body>
+
+</html>

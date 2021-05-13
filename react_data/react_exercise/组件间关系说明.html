@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="test"></div>
+	<script type="text/javascript" src="../尚硅谷React全家桶教程/react全家桶资料/03_依赖包/新版本/react.development.js"></script>
+	<script type="text/javascript" src="../尚硅谷React全家桶教程/react全家桶资料/03_依赖包/新版本/react-dom.development.js"></script>
+	<script type="text/javascript" src="../尚硅谷React全家桶教程/react全家桶资料/03_依赖包/新版本/babel.min.js"></script>
+
+	<script type="text/babel">
+		class A extends React.Component {
+			render() {
+				return (
+					<div>
+						<h1>这是A组件</h1>
+						<B/>
+						<C/>
+					</div>
+
+				)
+			}
+		}
+
+		
+		class B extends React.Component {
+			render() {
+				return (
+					<div>
+						<h1>这是B组件</h1>
+						<C/>
+					</div>
+
+				)
+			}
+		}
+
+		class C extends React.Component {
+			render() {
+				return <h1>这是C组件</h1>
+			}
+		}
+		ReactDOM.render(<A />, document.getElementById("test"))
+		
+	</script>
+</body>
+
+</html>

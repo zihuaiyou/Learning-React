@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件生命周期</title>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../尚硅谷React全家桶教程/react全家桶资料/03_依赖包/旧版本/react.development.js"></script>
+    <script type="text/javascript" src="../尚硅谷React全家桶教程/react全家桶资料/03_依赖包/旧版本/react-dom.development.js"></script>
+    <script type="text/javascript" src="../尚硅谷React全家桶教程/react全家桶资料/03_依赖包/旧版本/babel.min.js"></script>
+
+    <script type="text/babel">
+        class ComponentLife extends React.Component {
+            constructor() {
+                super()
+                console.log('---constructor---');
+            }
+            state = {
+                count: 0
+            }
+            add = () => {
+                let { count } = this.state;
+                this.setState({ count: count + 1 })
+                console.log("---setState---")
+            }
+            death = () =>{ //组件卸载完毕
+                ReactDOM.unmountComponentAtNode(document.getElementById("test"));
+                console.log("---componentUnmountAtNode---")
+            }
+            force = () => {
+                this.forceUpdate();//强制组件更新
+            }
+
+            //组件将要挂载,调用1次
+            componentWillMount() {
+                console.log("---componentWillMount---");
+            }
+            //组件挂载完毕,调用1次
+            componentDidMount() {
+                console.log("---componentDidMount---");
+            }
+            //组件将要卸载,调用1次
+            componentWillUnmount() {
+                console.log("---componentWillUnmount---");
+            }
+            //组件将要接收新的props
+            componentWillReceiveProps(){
+                console.log("---componentWillReceiveProps---");
+            }
+            //控制组件更新的"阀门",调用n次
+            shouldComponentUpdate(){
+                console.log("---shouldComponentUpdate---");
+                return true;
+            }
+            //组件将要更新,调用n次
+            componentWillUpdate(){
+                console.log("---componentWillUpdate---");
+            }
+            //组件完成更新,调用n次
+            componentDidUpdate(){
+                console.log("---componentDidUpdate---");
+            }
+
+            render() { //渲染并更新组件,调用1+n次
+                console.log("---render---");
+                return (
+                    <div>
+                        <h1>状态更新结果:{this.state.count},接受的父组件的信息是:{this.props.info}</h1>
+                        <button onClick={this.add}>状态更新</button>
+                        <button onClick={this.death}>卸载组件</button>
+                        <button onClick={this.force}>强制更新</button>
+                    </div>
+                );
+            }
+        }
+        
+        class FatherComponent extends React.Component {
+            state = {
+                info:"信息1"
+            }
+            changeInfo = () => {
+                let {info} = this.state;
+                this.setState({info:"信息2"});
+            }
+            render(){
+                return (
+                    <div>
+                        <h1>我是父组件</h1>
+                        <button onClick = {this.changeInfo}>更新信息</button>
+                        <ComponentLife info = {this.state.info}/>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<FatherComponent />, document.getElementById("test"));
+    </script>
+</body>
+
+</html>
