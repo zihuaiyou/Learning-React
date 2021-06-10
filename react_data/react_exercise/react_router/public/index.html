@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 解决多级目录样式丢失问题 有三种方法-->
+    <!-- 方法一  不用./-->
+    <!-- <link rel="stylesheet" href="/css/bootstrap.css"> -->
+
+    <!-- 方法二  用%PUBLIC_URL%-->
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/bootstrap.css">
+
+    <!-- 方法三 使用HashRouter-->
+    <title>路由的基本使用</title>
+    <style>
+        /* bootstrap 权限高,使用!important提高权限 */
+        .linkColor {
+            background-color: #ff6700 !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
