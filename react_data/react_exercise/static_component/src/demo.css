@@ -37,6 +37,8 @@ body {
 }
 .Todo-list > li button {
     display: none;
+    float: right;
+    margin:2px 0;
 }
 .Todo-footer {
     height: 40px;

@@ -1,10 +1,5 @@
-/* List Item*/
-.Todo-list {
-    margin-left: 0px;
-    border: 1px solid #ddd;
-    border-radius: 2px;
-    padding: 0px;
-}
+/* Item*/
+
 .Todo-list li {
     list-style: none;
     height: 36px;
@@ -12,9 +7,8 @@
     padding: 0 5px;
     border-bottom: 1px solid #ddd;
 }
-.Todo-list li:nth-child(4) {
-    border-bottom: 0px;
-}
-.Todo-list > li button {
+.Todo-list li button {
+    float: right;
     display: none;
+    margin: 3px 0;
 }
