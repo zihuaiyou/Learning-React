@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import About from "./pages/About";
 import Home from "./pages/Home";
-import { Route,Switch} from "react-router-dom";
+import { Route,Switch,Redirect} from "react-router-dom";
 import MyNavLink from "./components/MyNavLink";
-import Test from "./components/Test";
+// import Test from "./components/Test";
 
 export default class App extends Component {
   render() {
@@ -34,8 +34,9 @@ export default class App extends Component {
               {/* <NavLink activeClassName="linkColor" className="list-group-item" to="/b">Home</NavLink> */}
 
               {/* 为了实现NavLink的复用,自定义一个组件实现对NavLink的封装 */}
-              <MyNavLink to="/a/baidu">About</MyNavLink>
-              <MyNavLink to="/b/jingdong">Home</MyNavLink>
+              <MyNavLink to="/about">About</MyNavLink>
+              <MyNavLink to="/home">Home</MyNavLink>
+              {/* <MyNavLink to="/b">Home</MyNavLink> */}
             </div>
           </div>
           <div className="col-xs-6">
@@ -45,9 +46,13 @@ export default class App extends Component {
                 {/* Switch组建的使用 路由匹配路径时只匹配第一个符合要求的,效率高 */}
                 <Switch>
                   {/* 多级目录可能会出现样式丢失问题 */}
-                  <Route path="/a/baidu" component={About} />
-                  <Route path="/b/jingdong" component={Home} />
-                  <Route path="/b" component={Test} />
+                  {/* 模糊匹配  to跳转的路径必须含有注册的路径,并且顺序一致*/}
+                  {/* 严格匹配exact  to/和path必须严格一致*/}
+                  <Route path="/about" component={About} />
+                  <Route path="/home" component={Home} />
+                  {/* <Route exact path="/b" component={Test} /> */}
+                  {/* redirect 兜底作用 当所有路由没有匹配到,跳转到该路由 */}
+                  <Redirect to="/about"/>
                 </Switch>
               </div>
             </div>
