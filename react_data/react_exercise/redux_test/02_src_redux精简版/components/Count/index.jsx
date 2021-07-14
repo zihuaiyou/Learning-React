@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import store from "../../redux/store";
-import { incrementAction, decrementAction,incrementAsyncAction} from "../../redux/count_action";
-import {INCREMENT,DECREMENT,ODDINCREMENT,ASYNCINCREMENT} from '../../redux/constant'
+import store from "../../redux/store.js";
 
 class Count extends Component {
   // state = {
@@ -18,17 +16,17 @@ class Count extends Component {
 
   calculate = (type) => {
     const { value } = this.selected;
-    const count = store.getState();
-    if (type === INCREMENT) {
-      store.dispatch(incrementAction(value));
-    } else if (type === DECREMENT) {
-      store.dispatch(decrementAction(value));
-    } else if (type === ODDINCREMENT) {
+    const count  = store.getState();
+    if (type === "increment" || type === "decrement") {
+      store.dispatch({ type, data: value });
+    } else if (type === "oddIncrement") {
       if (count % 2 !== 0) {
-        store.dispatch(incrementAction(value));
+        store.dispatch({ type: "increment", data: value });
       }
-    } else if (type === ASYNCINCREMENT) {
-      store.dispatch(incrementAsyncAction(value,1000));
+    } else if (type === "asyncIncrement") {
+      return setTimeout(() => {
+        store.dispatch({ type: "increment", data: value });
+      }, 1000);
     }
   };
   render() {

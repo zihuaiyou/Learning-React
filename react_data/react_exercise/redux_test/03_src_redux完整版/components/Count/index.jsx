@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import store from "../../redux/store";
-import { incrementAction, decrementAction,incrementAsyncAction} from "../../redux/count_action";
+import { incrementAction, decrementAction } from "../../redux/count_action";
 import {INCREMENT,DECREMENT,ODDINCREMENT,ASYNCINCREMENT} from '../../redux/constant'
 
 class Count extends Component {
@@ -28,7 +28,9 @@ class Count extends Component {
         store.dispatch(incrementAction(value));
       }
     } else if (type === ASYNCINCREMENT) {
-      store.dispatch(incrementAsyncAction(value,1000));
+      return setTimeout(() => {
+        store.dispatch(incrementAction(value));
+      }, 1000);
     }
   };
   render() {
